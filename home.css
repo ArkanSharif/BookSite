@@ -1,0 +1,163 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+  position: relative;
+}
+
+
+.relative{
+  position: relative;
+}
+
+.hide{
+  display: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* Owl Carousel */
+
+.owl-nav{
+    height: 0;
+  }
+
+  .owl-nav span{
+    background-color: gainsboro;
+    opacity: 1;
+    font-size: 50px;
+    padding-bottom: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    border-radius: 50%;
+  }
+
+  .owl-nav span:hover{
+    opacity: 0.5;
+  }
+
+  .owl-nav .owl-prev span{
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+  }
+
+  .owl-nav .owl-next span{
+    position: absolute;
+    bottom: 180px;
+    right: 0;
+  }
+
+
+/* Nav Bar */
+
+.img-wrapper-profile-pic{
+  height: 50px;
+    width: 50px;
+}
+
+.offcanvas-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.author-dets-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img-wrapper-profile-pic img{
+  height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.img-wrapper-profile-pic-toggle-on{
+  height: 100px;
+    width: 100px;
+}
+
+.img-wrapper-profile-pic-toggle-on img{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+
+
+
+/* sign-up */
+
+.overlay{
+  position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 200; 
+}
+
+.sign-up-form{
+  display: flex;
+  position: absolute;
+  background-color: white;
+    left: 300;
+    right: 0;
+    top: 60;
+    bottom: 0;
+    width: 1000px;
+    height: 500px;
+}
+
+.sign-up-form .img-wrapper{
+  width: 500px;
+  height: 100%;
+  background-color: aqua;
+}
+
+.sign-up-form .img-wrapper img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-content{
+  height: 100%;
+  width: 100%;
+}
+
+/*section*/
+
+.banner-img{
+    width: 100%;
+    height: 80vh;
+}
+
+.banner-img img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.new-arrs{
+    margin-top: 30px;
+}

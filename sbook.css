@@ -1,0 +1,138 @@
+.relative{
+    position: relative;
+}
+
+.hide{
+    display: none;
+}
+
+.fixed{
+    position: sticky;
+    top: 40px;
+}
+
+.card-img-top{
+    width: 70%;
+    height: 70%;
+    margin-left: 45px;
+}
+
+.live-rating{
+    margin-left: 25px;
+}
+
+.live-rating .fa-solid{
+    color: grey;
+    font-size: 40px;
+}
+
+.rate-this{
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+.overflow {
+    height: 150px;
+    overflow: hidden;
+}
+
+.show-overflow{
+    overflow: visible;
+}
+
+.line{
+    height: 1px;
+    width: 100%;
+    background-color: grey;
+}  
+
+.author-img-wrapper{
+    height: 80px;
+    width: 80px;
+}
+
+.author-img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.carousel{
+    position: relative;
+    margin-top: 30px;
+}
+
+.carousel-img-wrapper{
+    height: 300px;
+    width: 300px;
+}
+
+.carousel-img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.help1{
+    position: absolute;
+    bottom: 430px;
+    left: 700px;
+    font-size: 2rem;
+}
+
+.help2{
+    position: absolute;
+    bottom: 430px;
+    left: 750px;
+    font-size: 2rem;
+}
+
+.raa{
+    position: absolute;
+    top: -20px;
+}
+
+.rev-img-wrapper{
+    height: 70px;
+    width: 70px;
+}
+
+.rev-img-wrapper img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.blur{
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    top: 120px;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+.pushtop{
+    padding-top: 60px;
+}
+
+.help4{
+    position: absolute;
+    bottom: 430px;
+    left: 1100px;
+    font-size: 2rem;
+}
+
+.help3{
+    position: absolute;
+    bottom: 430px;
+    left: 1150px;
+    font-size: 2rem;
+}
+
+.raa{
+    position: absolute;
+    top: -10px;
+}
+
