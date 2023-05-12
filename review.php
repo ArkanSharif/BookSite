@@ -19,6 +19,11 @@ include 'partials/getuserdetails.php';
 <!-- Index CSS-->
 <link rel="stylesheet" href="home.css?v=<?php echo time(); ?>">   
 </head>   
+<style>
+  .rev-star{
+    color:grey;
+  }
+</style>
 <body>
 <?php include 'partials/header.php'; ?>
 <div class="container">
@@ -27,11 +32,11 @@ include 'partials/getuserdetails.php';
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Rating:</label>
   <div class="rating">
-  <i class="fa-solid fa-star text-secondary"></i>
-  <i class="fa-solid fa-star text-secondary"></i>
-  <i class="fa-solid fa-star text-secondary"></i>
-  <i class="fa-solid fa-star text-secondary"></i>
-  <i class="fa-solid fa-star text-secondary"></i>
+  <i class="fa-solid fa-star rev-star" data-id="1"></i>
+  <i class="fa-solid fa-star rev-star" data-id="2"></i>
+  <i class="fa-solid fa-star rev-star" data-id="3"></i>
+  <i class="fa-solid fa-star rev-star" data-id="4"></i>
+  <i class="fa-solid fa-star rev-star" data-id="5"></i>
   </div>
 </div>
 <div class="mb-3">
@@ -44,6 +49,34 @@ include 'partials/getuserdetails.php';
 <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- Index JS-->
-<script src="review.js?v=<?php echo time(); ?>"></script>  
+<script>
+  document.querySelectorAll('.rev-star').forEach((star)=>{
+    star.addEventListener('mouseover', (e)=>{
+        var id = e.currentTarget.dataset.id;
+        for(var i = 0; i < id; i++){
+          document.querySelectorAll('.rev-star')[i].style.color = 'yellow';
+        };
+      });
+
+      star.addEventListener('mouseout', ()=>{
+        for(var i = 0; i < 5; i++){
+          document.querySelectorAll('.rev-star')[i].style.color = 'grey';
+        };
+      });
+
+      star.addEventListener('click', (e)=>{
+        var ratingId = e.currentTarget.dataset.id;
+        var xhttp = new XMLHttpRequest();
+        var ratingId = e.currentTarget.dataset.id;
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           document.querySelector(".rev-rating").innerHTML = this.responseText;
+        }
+      };
+        xhttp.open("GET", `setRevStar.php?rating=${ratingId}`, true);
+        xhttp.send();
+    });
+})
+</script>    
 </body>
 </html>
