@@ -5,6 +5,22 @@ error_reporting(E_ALL & ~E_WARNING);
 include 'partials/connect.php';
 include 'partials/getuserdetails.php';
 
+ $rating = $_SESSION["rating"] ;
+ $title = $_GET['title'];
+
+if(isset($_POST['submitRev'])){
+  echo $rating;
+  $email = $userProfile['email'];
+  $password = $userProfile['password'];
+  $profilePic = $userProfile['profilePic'];
+  $contentRev = $_POST['contentRev'];
+  /*$sql = "INSERT INTO userhistory (username, email, password, profilePic, revRating, review, reviewedBook) VALUES ('$username', '$email', '$password', '$profilePic', '$rating', '$contentRev', '$title')";
+  $result = mysqli_query($con, $sql);
+  if($result){
+    header('location:home.php');
+  }*/
+}
+
 ?>
 
 <html lang="eng">
@@ -23,6 +39,15 @@ include 'partials/getuserdetails.php';
   .rev-star{
     color:grey;
   }
+
+  .orange{
+    color: orange;
+  }
+
+  .grey{
+    color: grey;
+  }
+
 </style>
 <body>
 <?php include 'partials/header.php'; ?>
@@ -31,6 +56,7 @@ include 'partials/getuserdetails.php';
 <form method="POST">
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Rating:</label>
+  <h1><?php echo $rating?></h1>
   <div class="rating">
   <i class="fa-solid fa-star rev-star" data-id="1"></i>
   <i class="fa-solid fa-star rev-star" data-id="2"></i>
@@ -41,8 +67,9 @@ include 'partials/getuserdetails.php';
 </div>
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Review:</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="contentRev"></textarea>
 </div>
+<button type="submit" class="btn btn-primary" name="submitRev">Submit</button>
 </form>
 </div>
 
@@ -54,6 +81,7 @@ include 'partials/getuserdetails.php';
     star.addEventListener('mouseover', (e)=>{
         var id = e.currentTarget.dataset.id;
         for(var i = 0; i < id; i++){
+          console.log('help');
           document.querySelectorAll('.rev-star')[i].style.color = 'yellow';
         };
       });
@@ -66,14 +94,16 @@ include 'partials/getuserdetails.php';
 
       star.addEventListener('click', (e)=>{
         var ratingId = e.currentTarget.dataset.id;
+        $rating = ratingId;
+        console.log($rating);
         var xhttp = new XMLHttpRequest();
         var ratingId = e.currentTarget.dataset.id;
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           document.querySelector(".rev-rating").innerHTML = this.responseText;
+           document.querySelector(".rating").innerHTML = this.responseText;
         }
       };
-        xhttp.open("GET", `setRevStar.php?rating=${ratingId}`, true);
+        xhttp.open("GET", `setRevRating.php?rating=${ratingId}`, true);
         xhttp.send();
     });
 })

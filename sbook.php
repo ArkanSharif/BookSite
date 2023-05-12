@@ -242,7 +242,7 @@ $row = mysqli_fetch_assoc($result);
                     </div>
                     <div class="line mt-4"></div>
                     <h1 class="mt-3">Ratings & Reviews</h1>
-                    <button class="btn btn-dark px-5 py-3 rounded-pill my-5"><h3>Write a Review</h3></button>
+                    <a href="review.php?title=<?php echo $title ?>"><button class="btn btn-dark px-5 py-3 rounded-pill my-5"><h3>Write a Review</h3></button></a>
                     <div class="line mt-4"></div>
                     <div class="reviews mt-2">
                         <h4 class="mb-5">Coummunity Reviews</h4>

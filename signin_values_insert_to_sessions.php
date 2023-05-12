@@ -7,8 +7,6 @@ $email = $_GET['email'];
 $password = $_GET['password'];
 $profilePic = $_GET['profilePic'];
 
-echo $profilePic;
-
 $_SESSION["signinUsername"] = $username;
 $_SESSION["signinEmail"] = $email;
 $_SESSION["signinPassword"] = $password;
