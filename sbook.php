@@ -243,9 +243,57 @@ $row = mysqli_fetch_assoc($result);
                     <div class="line mt-4"></div>
                     <h1 class="mt-3">Ratings & Reviews</h1>
                     <a href="review.php?title=<?php echo $title ?>"><button class="btn btn-dark px-5 py-3 rounded-pill my-5"><h3>Write a Review</h3></button></a>
+
                     <div class="line mt-4"></div>
+                    
                     <div class="reviews mt-2">
                         <h4 class="mb-5">Coummunity Reviews</h4>
+                        <?php
+                        $sql = "SELECT * FROM userhistory WHERE username = '$username' && reviewedBook = '$title'";
+                        $result = mysqli_query($con, $sql); 
+                          $num = mysqli_num_rows($result);
+                          if($num > 0){
+                            $row = mysqli_fetch_assoc($result);
+                            echo '<div class="review-container relative row">
+                          <div class="review-author col-3">
+                              <div class="rev-img-wrapper">
+                              <img src="'.$row['profilePic'].'" alt="">
+                              </div>
+                              <p class="fw-bold mb-1">'.$row['username'].'</p>
+                              <p class="text-muted mb-0">4 reviews</p>
+                              <p class="text-muted nudger1">15 followers</p>
+                              <button class="btn-dark rounded-pill px-3 py-1 border-0">Follow</button>
+                          </div>
+                          <div class="review-div col">
+                              <div class="rating d-flex justify-content-between">
+                                  <div>';
+                                  for($i = 0; $i < 5; $i++){
+                                    if($i < $row['revRating']){
+                                        echo "<i class='fa-solid fa-star rev-star text-warning me-2'></i>";
+                                    } else{
+                                        echo "<i class='fa-solid fa-star rev-star text-secondary me-2'></i>";
+                                    }
+                                };
+                                  echo '</div>
+                                  <p class="text-muted">Septmber 24, 2022</p>
+                              </div>
+                              <div class="review-content relative overflow">
+                                <div class="blur blur-review"></div> 
+                                  <p class="review-p">
+                                  '.$row['review'].'
+                                  </p>  
+                              </div>
+                              <div class="read-more-review btn btn-success">Read more</div>
+                              <div class="line mt-4 mb-4"></div>
+                          </div>
+                      </div>';
+                          }                          
+                        ?>
+
+
+
+
+
                         <div class="review-container relative row">
                             <div class="review-author col-3">
                                 <div class="rev-img-wrapper">

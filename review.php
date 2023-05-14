@@ -1,24 +1,21 @@
 <?php
 
-error_reporting(E_ALL & ~E_WARNING);
-
 include 'partials/connect.php';
 include 'partials/getuserdetails.php';
 
- $rating = $_SESSION["rating"] ;
  $title = $_GET['title'];
 
 if(isset($_POST['submitRev'])){
-  echo $rating;
+  $rating = $_COOKIE['ratingid'];
   $email = $userProfile['email'];
   $password = $userProfile['password'];
   $profilePic = $userProfile['profilePic'];
   $contentRev = $_POST['contentRev'];
-  /*$sql = "INSERT INTO userhistory (username, email, password, profilePic, revRating, review, reviewedBook) VALUES ('$username', '$email', '$password', '$profilePic', '$rating', '$contentRev', '$title')";
+  $sql = "INSERT INTO userhistory (username, email, password, profilePic, revRating, review, reviewedBook) VALUES ('$username', '$email', '$password', '$profilePic', '$rating', '$contentRev', '$title')";
   $result = mysqli_query($con, $sql);
   if($result){
     header('location:home.php');
-  }*/
+  }
 }
 
 ?>
@@ -56,7 +53,6 @@ if(isset($_POST['submitRev'])){
 <form method="POST">
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Rating:</label>
-  <h1><?php echo $rating?></h1>
   <div class="rating">
   <i class="fa-solid fa-star rev-star" data-id="1"></i>
   <i class="fa-solid fa-star rev-star" data-id="2"></i>
@@ -94,8 +90,7 @@ if(isset($_POST['submitRev'])){
 
       star.addEventListener('click', (e)=>{
         var ratingId = e.currentTarget.dataset.id;
-        $rating = ratingId;
-        console.log($rating);
+        document.cookie = "ratingid = " + ratingId;
         var xhttp = new XMLHttpRequest();
         var ratingId = e.currentTarget.dataset.id;
         xhttp.onreadystatechange = function() {
