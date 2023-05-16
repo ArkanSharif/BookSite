@@ -5,6 +5,8 @@ error_reporting(E_ALL & ~E_WARNING);
 include 'partials/connect.php';
 include 'partials/getuserdetails.php';
 
+echo $liveRating;
+
 $sql = "SELECT * FROM `all-books` WHERE category = 'new_arr'";
 $result = mysqli_query($con, $sql);
 $new_arrivals = mysqli_fetch_all($result, MYSQLI_ASSOC);

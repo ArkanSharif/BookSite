@@ -62,6 +62,23 @@ if(isset($_POST['updatesubmitprofilepic'])){
   }
 }
 
+// sbook code to add liveRating -------------------------------------------------
+
+$titleSbook = $_SESSION["titleSbook"];
+
+$zero = 0;
+$liveRating = $_COOKIE['liveRatingId'];
+
+$email = $userProfile['email'];
+$password = $userProfile['password'];
+$profilePic = $userProfile['profilePic'];
+
+if($liveRating){
+$sql = "INSERT INTO userhistory (username, email, password, profilePic, liveRating, liveRatingTitle) VALUES ('$username', '$email', '$password', '$profilePic', '$liveRating', '$titleSbook')";
+$result = mysqli_query($con, $sql);
+setcookie('liveRatingId', $zero);
+} 
+
 
 
 ?>

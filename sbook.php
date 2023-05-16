@@ -1,16 +1,15 @@
 <?php
-
 error_reporting(E_ALL & ~E_WARNING);
 
 include 'partials/connect.php';
 include 'partials/getuserdetails.php';
 
+$_SESSION["titleSbook"] = $_GET['title'];
 $title = $_GET['title'];
 
 $sql = "SELECT * FROM `all-books` WHERE title = '$title'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
-
 
 ?>
 
@@ -24,7 +23,7 @@ $row = mysqli_fetch_assoc($result);
 <!-- Bootsrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- Index CSS -->
-<link rel="stylesheet" href="sbook.css">
+<link rel="stylesheet" href="sbook.css?v=<?php echo time(); ?>">
 <!-- Font awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <!-- Owl Carousel-->
@@ -32,6 +31,8 @@ $row = mysqli_fetch_assoc($result);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
 
 <body>
+
+<?php include 'partials/header.php'; ?>
 
     <div class="container mt-5">
         <div class="row">
@@ -45,11 +46,41 @@ $row = mysqli_fetch_assoc($result);
                     </div>    
                   </div>
                   <div class="live-rating mt-3">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+
+    <!--------------- LIVERATING CODE ------------------------------>
+
+                    <?php 
+                    if($username){
+                      $sql = "SELECT * FROM userhistory WHERE username = '$username' AND liveRatingTitle = '$title'";
+                      $result = mysqli_query($con, $sql);
+                      $num = mysqli_num_rows($result);
+                          if($num > 0){
+                            $rowLiveRating = mysqli_fetch_assoc($result);
+                            for($i = 0; $i < 5; $i++){
+                              if($i < $rowLiveRating['liveRating']){
+                                  echo "<i class='fa-solid fa-star text-warning me-1'></i>";
+                              } else{
+                                  echo "<i class='fa-solid fa-star text-secondary me-1'></i>";
+                              }
+                          };
+                          } else{
+                            echo '<i class="fa-solid fa-star live-star" data-id="1"></i>
+                            <i class="fa-solid fa-star live-star" data-id="2"></i>
+                            <i class="fa-solid fa-star live-star" data-id="3"></i>
+                            <i class="fa-solid fa-star live-star" data-id="4"></i>
+                            <i class="fa-solid fa-star live-star" data-id="5"></i>';
+                          }
+                    } else{
+                      echo '<i class="fa-solid fa-star live-star" data-id="1"></i>
+                      <i class="fa-solid fa-star live-star" data-id="2"></i>
+                      <i class="fa-solid fa-star live-star" data-id="3"></i>
+                      <i class="fa-solid fa-star live-star" data-id="4"></i>
+                      <i class="fa-solid fa-star live-star" data-id="5"></i>';
+                  }
+                    ?>
+
+                    <!--------------- END OF CODE ----------->
+
                 </div>
                 <h4 class="rate-this">Rate this book</h4>
                 </div>
@@ -248,6 +279,8 @@ $row = mysqli_fetch_assoc($result);
                     
                     <div class="reviews mt-2">
                         <h4 class="mb-5">Coummunity Reviews</h4>
+
+                        <!-----------REVIEW POSTING CODE------------->
                         <?php
                         $sql = "SELECT * FROM userhistory WHERE username = '$username' && reviewedBook = '$title'";
                         $result = mysqli_query($con, $sql); 
@@ -289,7 +322,7 @@ $row = mysqli_fetch_assoc($result);
                       </div>';
                           }                          
                         ?>
-
+                        <!-- END -->
 
 
 
@@ -551,8 +584,10 @@ $row = mysqli_fetch_assoc($result);
 
 
     </div>
-<!-- Bootstrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>    
+    <!-- Bootsrap 5 JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Bootstrap JS
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>  -->  
 <!-- Index JS-->
 <script type="text/javascript" src="sbook.js"></script>
 <!-- Owl Carousel-->
@@ -576,6 +611,36 @@ $row = mysqli_fetch_assoc($result);
           }
       }
   })
-  </script>    
+  </script> 
+  <script>
+    document.querySelectorAll('.live-star').forEach((star)=>{
+    star.addEventListener('mouseover', (e)=>{
+      console.log('hellppp');
+        var id = e.currentTarget.dataset.id;
+        for(var i = 0; i < id; i++){
+          document.querySelectorAll('.live-star')[i].style.color = 'yellow';
+        };
+      });
+
+      star.addEventListener('mouseout', ()=>{
+        for(var i = 0; i < 5; i++){
+          document.querySelectorAll('.live-star')[i].style.color = 'grey';
+        };
+      });
+
+      star.addEventListener('click', (e)=>{
+        var liveRatingId = e.currentTarget.dataset.id;
+        document.cookie = "liveRatingId = " + liveRatingId;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           document.querySelector(".live-rating").innerHTML = this.responseText;
+        }
+      };
+        xhttp.open("GET", `setLiveRating.php?rating=${liveRatingId}&cookie=<?php echo $liveRating ?>`, true);
+        xhttp.send();
+    });
+    });
+  </script>   
 </body>     
 </html>
