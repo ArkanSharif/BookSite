@@ -41,7 +41,23 @@ $row = mysqli_fetch_assoc($result);
                 <div class="card border-0" style="width: 18rem;">
                     <img src="<?php echo $row['img']?>" class="card-img-top" alt="...">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary  rounded-pill fw-bold mt-3" type="button">Add to shelf</button>
+
+                      <!-- Already shelved code -->
+
+                      <?php 
+                      if($username){
+                        $sql = "SELECT * FROM `userhistory` WHERE username = '$username' AND title = '$title'";
+                        $result = mysqli_query($con, $sql);
+                        $num = mysqli_num_rows($result);
+                         if($num === 0){
+                          echo '<button class="btn btn-primary rounded-pill fw-bold mt-3" type="button"><a href="shelf.php?title='.$row['title'].'&author='.$row['author'].'&bookImg='.$row['img'].'" class="text-light full-width">Add to shelf</a></button>';
+                          }else{
+                            echo '<button class="btn btn-primary rounded-pill fw-bold mt-3"  type="button">Already shelved</button>';
+                          }
+                      }
+                      ?>
+                        <!-- end of code -->
+
                         <button class="btn btn-danger  rounded-pill fw-bold mt-3" type="button">Purchase 19.99$</button>
                     </div>    
                   </div>
@@ -612,10 +628,10 @@ $row = mysqli_fetch_assoc($result);
       }
   })
   </script> 
+
   <script>
     document.querySelectorAll('.live-star').forEach((star)=>{
     star.addEventListener('mouseover', (e)=>{
-      console.log('hellppp');
         var id = e.currentTarget.dataset.id;
         for(var i = 0; i < id; i++){
           document.querySelectorAll('.live-star')[i].style.color = 'yellow';
