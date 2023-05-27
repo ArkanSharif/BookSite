@@ -9,12 +9,9 @@ $sql = "SELECT * FROM `all-books` WHERE category = 'new_arr'";
 $result = mysqli_query($con, $sql);
 $new_arrivals = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
- 
-
 $sql = "SELECT * FROM `all-books` WHERE category = 'best_seller'";
 $result = mysqli_query($con, $sql);
 $best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 
 ?>
 

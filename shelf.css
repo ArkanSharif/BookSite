@@ -110,7 +110,36 @@ a{
     height: 100%;
     width: 100%;
   }
-  
+
+  /* sign-in-alert */
+
+  .sign-in-alert-overlay{
+    position: fixed; 
+      width: 100%; 
+      height: 100%; 
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5); 
+      z-index: 200; 
+  }
+
+  .sign-in-alert-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  position: absolute;
+  background-color: white;
+    left: 300;
+    right: 0;
+    top: 160;
+    bottom: 0;
+    width: 1000px;
+    height: 250px;
+  }
+
   /*section*/
   
   .banner-img{
@@ -138,3 +167,7 @@ a{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 } 
+
+.remove-book{
+  cursor: pointer;
+}

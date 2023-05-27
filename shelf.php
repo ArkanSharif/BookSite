@@ -23,16 +23,17 @@ if($num === 0){
     $result = mysqli_query($con, $sql);
 } 
 
-$limit = 4;
+$initialLimit = 4;
+$i = 0;
 
-$sql = "SELECT * FROM `userhistory` WHERE username = '$username' AND shelvedBook = 'true' lIMIT 4";
+$sql = "SELECT * FROM `userhistory` WHERE username = '$username' AND shelvedBook = 'true'";
 $result = mysqli_query($con, $sql);
 if($result){
     $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $rowcount=mysqli_num_rows($result);
 } 
 
-// Gets all rows with  shelvedBook = 'true'
+// Gets all rows with shelvedBook = 'true'
 
 $sql = "SELECT * FROM `userhistory` WHERE username = '$username' AND shelvedBook = 'true'";
 $result = mysqli_query($con, $sql);
@@ -68,20 +69,36 @@ $maxRows = mysqli_num_rows($result);
 
     <!--- Books posted here --> 
 
-    <?PHP foreach($row as $value){ ?>
-        <div class="card border-0" style="width: 15rem;">
-  <img src="<?PHP echo $value['bookImg'] ?>" class="card-img-top" alt="...">
+    <?PHP foreach($row as $value){ 
+        if($initialLimit > $i ){
+        echo '<div class="card border-0 shelf-book mt-5" style="width: 15rem;">
+  <img src="'.$value['bookImg'].'" class="card-img-top" alt="...">
   <div class="card-body p-0">
-                      <h3 class="title mt-2"><?PHP echo $value['title'] ?></h3>
-                      <h5 class="author mt-2"><?PHP echo $value['author'] ?></h5>
+                      <h3 class="title mt-2">'.$value['title'].'</h3>
+                      <h5 class="author mt-2">'.$value['author'].'</h5>
                       <div class="rating mt-2">**
                           <span class="rating-star"><i class="bi bi-star-fill"></i></span>
                           <span class="text-muted">4.47</span>
                       </div>
-                      <a class="remove-book" data-title="<?PHP echo $value['title'] ?>">Remove</a>
+                      <a class="remove-book" data-title="'.$value['title'].'">Remove</a>
                    </div>
-                   </div>
-                   <?php } ?>
+                   </div>';
+        }else{
+            echo '<div class="card border-0 hide shelf-book mt-5" style="width: 15rem;">
+            <img src="'.$value['bookImg'].'" class="card-img-top" alt="...">
+            <div class="card-body p-0">
+                                <h3 class="title mt-2">'.$value['title'].'</h3>
+                                <h5 class="author mt-2">'.$value['author'].'</h5>
+                                <div class="rating mt-2">**
+                                    <span class="rating-star"><i class="bi bi-star-fill"></i></span>
+                                    <span class="text-muted">4.47</span>
+                                </div>
+                                <a class="remove-book" data-title="'.$value['title'].'">Remove</a>
+                             </div>
+                             </div>';
+        }
+        ++$i;
+                   } ?>
 
                    <!-- END OF CODE -->
 
@@ -120,19 +137,19 @@ document.querySelectorAll('.remove-book').forEach((btn)=>{
 
     var limit = 4;
 document.querySelector('.view-more').addEventListener('click', ()=>{
+    var maxRows = <?php echo $maxRows ?> ;
     limit += 4;
-        var maxRows = <?php echo $maxRows ?>;
+    for(var i = 0; i < limit; i++){
         if(maxRows <= limit){
             document.querySelector(".view-more").style.display = 'none';
         }
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-             document.querySelector(".row-shelf").innerHTML = this.responseText;
-                       }
-           };
-        xhttp.open("GET", `shelfAJAX.php?limit=${limit}`, true);
-        xhttp.send();
+        document.querySelectorAll('.shelf-book')[i].classList.remove('hide');
+    }
+        
+        
+        
+        
+       
 })
 </script>  
 </body>     

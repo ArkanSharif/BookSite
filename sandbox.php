@@ -1,28 +1,5 @@
 <?php
 
-include 'partials/connect.php';
-include 'partials/getuserdetails.php';
-
- $title = $_GET['title'];
- $rating = $_COOKIE['ratingid'];
-  echo $rating;
-  $text = $_POST['text'];
-  echo $text;
-
-/*if(isset($_POST['submitRev'])){
-  $rating = $_COOKIE['ratingid'];
-  echo $rating;
-  $email = $userProfile['email'];
-  $password = $userProfile['password'];
-  $profilePic = $userProfile['profilePic'];
-  //$contentRev = $_POST['contentRev'];
-  $sql = "INSERT INTO userhistory (username, email, password, profilePic, revRating, review, reviewedBook) VALUES ('$username', '$email', '$password', '$profilePic', '$rating', '$contentRev', '$title')";
-  $result = mysqli_query($con, $sql);
-  if($result){
-    header('location:home.php');
-  }
-}*/
-
 ?>
 
 <html lang="eng">
@@ -40,84 +17,44 @@ include 'partials/getuserdetails.php';
 <link rel="stylesheet" href="home.css?v=<?php echo time(); ?>">   
 </head>   
 <style>
-  .rev-star{
-    color:grey;
-  }
-
-  .orange{
-    color: orange;
-  }
-
-  .grey{
-    color: grey;
-  }
-
-  button{
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-}
 
 </style>
 <body>
-<?php include 'partials/header.php'; ?>
 <div class="container">
-<h1 class="text-center my-5">REVIEW FORM</h1>
-<form method="POST" id="form_id">
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Rating:</label>
-  <div class="rating">
-  <i class="fa-solid fa-star rev-star" data-id="1"></i>
-  <i class="fa-solid fa-star rev-star" data-id="2"></i>
-  <i class="fa-solid fa-star rev-star" data-id="3"></i>
-  <i class="fa-solid fa-star rev-star" data-id="4"></i>
-  <i class="fa-solid fa-star rev-star" data-id="5"></i>
-  </div>
-
-  <input type="text" 
-               name="text" 
-               placeholder="Enter Mail ID" />
-
-</div>
-</form>
+  <button class='help'>CLICK ME!</button>
+  <button class='help'>SAD SAD!</button>
 </div>
 
 <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Ajax Lin -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <!-- Index JS-->
 <script>
-  document.querySelectorAll('.rev-star').forEach((star)=>{
-    star.addEventListener('mouseover', (e)=>{
-        var id = e.currentTarget.dataset.id;
-        for(var i = 0; i < id; i++){
-          document.querySelectorAll('.rev-star')[i].style.color = 'yellow';
-        };
-      });
+$(document).on('click', '.help', function() {
+  console.log('happy!');
+    
+    // Ajax called here
 
-      star.addEventListener('mouseout', ()=>{
-        for(var i = 0; i < 5; i++){
-          document.querySelectorAll('.rev-star')[i].style.color = 'grey';
-        };
-      });
+    var xhttp = new XMLHttpRequest();
 
-      star.addEventListener('click', (e)=>{
-        var ratingId = e.currentTarget.dataset.id;
-        document.cookie = "ratingid = " + ratingId;
-        var xhttp = new XMLHttpRequest();
-        var ratingId = e.currentTarget.dataset.id;
-        xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-           document.querySelector(".rating").innerHTML = this.responseText;
-        }
-      };
-        xhttp.open("GET", `sandboxAjax.php`, true);
-        xhttp.send();
-    });
-})
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+  document.querySelector(".container").innerHTML = this.responseText;
+}
+};
+xhttp.open("GET", "sandboxAjax.php", true);
+xhttp.send();
+});
+
+
+
+
+  /*$("button").on("click", function(){
+
+    
+});*/
+  
 </script>    
 </body>
 </html>

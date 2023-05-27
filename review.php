@@ -43,8 +43,8 @@ if(isset($_POST['submitRev'])){
     color: orange;
   }
 
-  .grey{
-    color: grey;
+  .yellow{
+    color: yellow;
   }
 
 </style>
@@ -73,24 +73,25 @@ if(isset($_POST['submitRev'])){
 
 <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Ajax Lib -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <!-- Index JS-->
 <script>
-  document.querySelectorAll('.rev-star').forEach((star)=>{
-    star.addEventListener('mouseover', (e)=>{
+ 
+    $(document).on('mouseover', '.rev-star', function(e) {
         var id = e.currentTarget.dataset.id;
         for(var i = 0; i < id; i++){
-          console.log('help');
-          document.querySelectorAll('.rev-star')[i].style.color = 'yellow';
+          document.querySelectorAll('.rev-star')[i].classList.add('yellow');
         };
       });
 
-      star.addEventListener('mouseout', ()=>{
+      $(document).on('mouseout', '.rev-star', function(e) {
         for(var i = 0; i < 5; i++){
-          document.querySelectorAll('.rev-star')[i].style.color = 'grey';
+          document.querySelectorAll('.rev-star')[i].classList.remove('yellow');
         };
       });
 
-      star.addEventListener('click', (e)=>{
+      $(document).on('click', '.rev-star', function(e) {
         var ratingId = e.currentTarget.dataset.id;
         document.cookie = "ratingid = " + ratingId;
         var xhttp = new XMLHttpRequest();
@@ -103,7 +104,7 @@ if(isset($_POST['submitRev'])){
         xhttp.open("GET", `setRevRating.php?rating=${ratingId}`, true);
         xhttp.send();
     });
-})
+
 </script>    
 </body>
 </html>

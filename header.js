@@ -8,4 +8,8 @@ document.querySelector('.overlay').addEventListener('click', (e)=>{
         document.querySelector('.overlay').classList.add('hide');
     }
 })
+
+
+
+
      

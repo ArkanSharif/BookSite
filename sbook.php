@@ -54,11 +54,19 @@ $row = mysqli_fetch_assoc($result);
                           }else{
                             echo '<button class="btn btn-primary rounded-pill fw-bold mt-3"  type="button">Already shelved</button>';
                           }
+                      }else{
+                        echo '<button class="btn btn-primary rounded-pill fw-bold mt-3 sign-in-alert" type="button">Add to shelf</button>';
                       }
                       ?>
                         <!-- end of code -->
-
-                        <button class="btn btn-danger  rounded-pill fw-bold mt-3" type="button">Purchase 19.99$</button>
+                      <?php 
+                       if($username){ 
+                        echo '<button class="btn btn-danger rounded-pill fw-bold mt-3" type="button"><a href="purchase.php?title='.$title.'">Purchase $19.99</a></button>';
+                       }
+                        else{
+                          echo '<button class="btn btn-danger rounded-pill fw-bold mt-3 sign-in-alert" type="button">Purchase $19.99</button>';
+                        }
+                        ?>
                     </div>    
                   </div>
                   <div class="live-rating mt-3">
@@ -72,12 +80,14 @@ $row = mysqli_fetch_assoc($result);
                       $num = mysqli_num_rows($result);
                           if($num > 0){
                             $rowLiveRating = mysqli_fetch_assoc($result);
-                            for($i = 0; $i < 5; $i++){
+                            $one = 1;
+                            for($i = 0; $i < 5; $i++){   
                               if($i < $rowLiveRating['liveRating']){
-                                  echo "<i class='fa-solid fa-star text-warning me-1'></i>";
+                                  echo "<i class='fa-solid fa-star live-star orange me-1' data-id='${one}'></i>";
                               } else{
-                                  echo "<i class='fa-solid fa-star text-secondary me-1'></i>";
+                                  echo "<i class='fa-solid fa-star live-star me-1' data-id='${one}'></i>";
                               }
+                              ++$one;
                           };
                           } else{
                             echo '<i class="fa-solid fa-star live-star" data-id="1"></i>
@@ -87,11 +97,11 @@ $row = mysqli_fetch_assoc($result);
                             <i class="fa-solid fa-star live-star" data-id="5"></i>';
                           }
                     } else{
-                      echo '<i class="fa-solid fa-star live-star" data-id="1"></i>
-                      <i class="fa-solid fa-star live-star" data-id="2"></i>
-                      <i class="fa-solid fa-star live-star" data-id="3"></i>
-                      <i class="fa-solid fa-star live-star" data-id="4"></i>
-                      <i class="fa-solid fa-star live-star" data-id="5"></i>';
+                      echo '<i class="fa-solid fa-star sign-in-alert offline-star" data-id="1"></i>
+                      <i class="fa-solid fa-star sign-in-alert offline-star" data-id="2"></i>
+                      <i class="fa-solid fa-star sign-in-alert offline-star" data-id="3"></i>
+                      <i class="fa-solid fa-star sign-in-alert offline-star" data-id="4"></i>
+                      <i class="fa-solid fa-star sign-in-alert offline-star" data-id="5"></i>';
                   }
                     ?>
 
@@ -289,7 +299,12 @@ $row = mysqli_fetch_assoc($result);
                     </div>
                     <div class="line mt-4"></div>
                     <h1 class="mt-3">Ratings & Reviews</h1>
-                    <a href="review.php?title=<?php echo $title ?>"><button class="btn btn-dark px-5 py-3 rounded-pill my-5"><h3>Write a Review</h3></button></a>
+                    <?php if($username){
+                    echo '<a href="review.php?title='.$title.'"><button class="btn btn-dark px-5 py-3 rounded-pill my-5"><h3>Write a Review</h3></button></a>';
+                    } else{
+                      echo '<button class="btn btn-dark px-5 py-3 rounded-pill my-5 sign-in-alert"><h3>Write a Review</h3></button>';
+                    }
+                    ?>
 
                     <div class="line mt-4"></div>
                     
@@ -602,8 +617,7 @@ $row = mysqli_fetch_assoc($result);
     </div>
     <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<!-- Bootstrap JS
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>  -->  
+    
 <!-- Index JS-->
 <script type="text/javascript" src="sbook.js"></script>
 <!-- Owl Carousel-->
@@ -628,23 +642,24 @@ $row = mysqli_fetch_assoc($result);
       }
   })
   </script> 
-
+<!-- Ajax Lib -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script>
-    document.querySelectorAll('.live-star').forEach((star)=>{
-    star.addEventListener('mouseover', (e)=>{
+      $(document).on('mouseover', '.live-star', function(e) {
         var id = e.currentTarget.dataset.id;
         for(var i = 0; i < id; i++){
-          document.querySelectorAll('.live-star')[i].style.color = 'yellow';
+          console.log('i hate you');
+          document.querySelectorAll('.live-star')[i].classList.add('yellow');
         };
       });
 
-      star.addEventListener('mouseout', ()=>{
+      $(document).on('mouseout', '.live-star', function(e) {
         for(var i = 0; i < 5; i++){
-          document.querySelectorAll('.live-star')[i].style.color = 'grey';
+          document.querySelectorAll('.live-star')[i].classList.remove('yellow');
         };
       });
 
-      star.addEventListener('click', (e)=>{
+      $(document).on('click', '.live-star', function(e) {
         var liveRatingId = e.currentTarget.dataset.id;
         document.cookie = "liveRatingId = " + liveRatingId;
         var xhttp = new XMLHttpRequest();
@@ -656,7 +671,32 @@ $row = mysqli_fetch_assoc($result);
         xhttp.open("GET", `setLiveRating.php?rating=${liveRatingId}&cookie=<?php echo $liveRating ?>`, true);
         xhttp.send();
     });
-    });
+
+    $(document).on('mouseover', '.offline-star', function(e) {
+        var id = e.currentTarget.dataset.id;
+        for(var i = 0; i < id; i++){
+          document.querySelectorAll('.offline-star')[i].classList.add('yellow');
+        };
+      });
+
+      $(document).on('mouseout', '.offline-star', function(e) {
+        for(var i = 0; i < 5; i++){
+          document.querySelectorAll('.offline-star')[i].classList.remove('yellow');
+        };
+      });
+
+    $(document).on('click', '.sign-in-alert', function(){
+    document.querySelector('.sign-in-alert-overlay').classList.remove('hide');
+});
+
+document.querySelector('.sign-in-alert-overlay').addEventListener('click', (e)=>{
+    var closeByClickingOverlay = e.target.className;
+    if(closeByClickingOverlay === 'sign-in-alert-overlay'){
+        document.querySelector('.sign-in-alert-overlay').classList.add('hide');
+    }
+})
+
+    
   </script>   
 </body>     
 </html>

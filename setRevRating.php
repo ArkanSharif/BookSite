@@ -14,7 +14,7 @@ for($i = 0; $i < 5; $i++){
     if($i < $rating){
         echo '<i class="fa-solid fa-star rev-star orange" data-id="'.$id.'"></i>';
     } else{
-        echo '<i class="fa-solid fa-star rev-star grey" data-id="'.$id.'"></i>';
+        echo '<i class="fa-solid fa-star rev-star" data-id="'.$id.'"></i>';
     }
 };
 
