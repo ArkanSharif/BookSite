@@ -22,6 +22,8 @@ $row = mysqli_fetch_assoc($result);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootsrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootsrap 5 icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Index CSS -->
 <link rel="stylesheet" href="sbook.css?v=<?php echo time(); ?>">
 <!-- Font awesome -->
@@ -33,11 +35,11 @@ $row = mysqli_fetch_assoc($result);
 <body>
 
 <?php include 'partials/header.php'; ?>
-
+  <section class="sbook">
     <div class="container mt-5">
         <div class="row">
-            <div class="col-4 relative">
-                <div class="fixed">
+            <div class="col-lg-4 col-12 relative flex-it">
+                <div class="sticky">
                 <div class="card border-0" style="width: 18rem;">
                     <img src="<?php echo $row['img']?>" class="card-img-top" alt="...">
                     <div class="d-grid gap-2">
@@ -610,11 +612,9 @@ $row = mysqli_fetch_assoc($result);
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-
-        <br><br><br><br><br><br><br><br><br>
-
-
     </div>
+    <?php include 'partials/footer.php'; ?>
+                        </section>
     <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     

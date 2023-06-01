@@ -56,6 +56,46 @@ a{
 
 /* Nav Bar */
 
+.alert{
+  position: absolute; 
+  bottom: 2000;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.fixed{
+  position: fixed; 
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav-media-fs{
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+.navbar-brand {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+.navbar-nav{
+  align-items: center;
+} 
+
+.navbar-dark .navbar-nav .nav-link {
+  color: red;
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+  color: blue;
+}
+
 .img-wrapper-profile-pic{
   height: 50px;
     width: 50px;
@@ -97,6 +137,14 @@ a{
   width: 100%;
   border-radius: 50%;
   object-fit: contain;
+}
+
+.min-hide{
+  display: block;
+}
+
+.min-display{
+  display: none;
 }
 
 /* sign-up */
@@ -186,4 +234,246 @@ a{
 
 .new-arrs{
     margin-top: 30px;
+}
+
+/* footer */
+
+footer .img-wrapper{
+  width: 100%;
+  height: 60vh;
+  background-image: url("img/footer-img.jpg");
+  background-size: cover;
+}
+
+footer .overlayy{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+footer .footer-content{
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer .footer-content .social-links i:hover{
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+footer *{
+  font-size: 3rem;
+ }
+
+.footer-st{
+  font-size: 1rem;
+ }
+
+/* media query */
+
+@media only screen and (min-width: 2000px){
+
+.nav-media-fs{
+    font-size: 5rem;
+}
+
+.navbar-nav{
+  font-size: 2.5rem;
+  align-items: center;
+} 
+
+.nav-fs{
+  font-size: 2.5rem;
+}
+
+.banner-img{
+  width: 150%;
+}
+
+.home{
+  overflow: hidden;
+}
+
+h1{
+  font-size: 10rem;
+}
+
+.owl-nav span {
+  background-color: gainsboro;
+  opacity: 1;
+  font-size: 150px;
+}
+
+.owl-nav .owl-next span {
+  position: absolute;
+  bottom: 350px;
+  right: 0;
+}
+
+.owl-nav .owl-prev span {
+  position: absolute;
+  bottom: 350px;
+  left: 0;
+}
+
+ footer *{
+  font-size: 10rem;
+ }
+
+ .footer-st{
+  font-size: 2.5rem;
+ }
+}
+
+@media only screen and (max-width: 1024px){
+
+  .alert{
+    bottom: 1720;
+  }
+
+  .min-hide{
+    display: block;
+  }
+
+  .nav-media-fs{
+    font-size: 2rem;
+  }
+
+  .banner-img{
+    width: 140%;
+    height: 65vh;
+  }
+  
+  .home{
+    overflow: hidden;
+  }
+
+  .owl-nav .owl-next span {
+    position: absolute;
+    bottom: 110px;
+    right: 0;
+  }
+  
+  .owl-nav .owl-prev span {
+    position: absolute;
+    bottom: 110px;
+    left: 0;
+  }
+
+  footer *{
+    font-size: 3rem;
+   }
+  
+  .footer-st{
+    font-size: 1rem;
+   }
+}
+
+@media only screen and (max-width: 768px){
+
+  .alert{
+    position: absolute;
+    bottom: 1350;
+  }
+  
+  .min-hide{
+    display: none;
+  }
+
+  .min-display{
+    display: block;
+  }
+
+  .navbar-brand {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+  .nav-media-fs{
+    font-size: 2rem;
+    margin-top: 18px;
+  }
+
+  .banner-img{
+    display: none;
+  }
+
+  .media-t{
+    padding-top: 80px;
+  }
+
+  .owl-nav .owl-next span {
+    position: absolute;
+    bottom: 150px;
+    right: 0;
+  }
+
+  .owl-nav .owl-prev span {
+    position: absolute;
+    bottom: 150px;
+    left: 0;
+  }
+
+  .sign-in-alert-container {
+    left: 0;
+    width: 100%;
+}   
+  
+  footer *{
+    font-size: 2rem;
+   }
+  
+  .footer-st{
+    font-size: 0.5rem;
+   }
+  
+  }
+
+   @media only screen and (max-width: 376px){
+
+    .alert{
+      position: absolute;
+      bottom: 1170;
+    }
+    .navbar-brand {
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+  }
+    .nav-media-fs{
+      font-size: 1.8rem;
+      margin-top: 18px;
+    }
+
+    h1{
+      font-size: 2.5rem;
+    }
+
+    .owl-nav .owl-next span {
+      position: absolute;
+      bottom: 100px;
+      right: 0;
+    }
+  
+    .owl-nav .owl-prev span {
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+    }
+
+    footer *{
+      font-size: 2rem;
+     }
+    
+    .footer-st{
+      font-size: 0.8rem;
+     }
+  
+
 }

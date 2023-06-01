@@ -23,6 +23,8 @@ $best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootsrap 5 CSS-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootsrap 5 icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Index CSS-->
 <link rel="stylesheet" href="home.css?v=<?php echo time(); ?>">
 <!-- Owl Carousel-->
@@ -34,13 +36,13 @@ $best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 <?php include 'partials/header.php'; ?>
 
-
+<section class="home">
       <div class="banner-img">
         <img src="img/bannerimg3.png" alt="">
     </div>
 
 
-    <section class="new-arrs">
+    <section class="new-arrs media-t">
       <h1 class="text-center mb-3">NEW-ARRIVALS</h1>
     <div class="owl-carousel owl-theme">
           <?php foreach($new_arrivals as $row){ ?>
@@ -62,6 +64,9 @@ $best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
   </div>
   </section>
 
+  <?php include 'partials/footer.php'; ?>
+          </section>
+
 
 
 <!-- Bootsrap 5 JS-->
@@ -79,13 +84,16 @@ $best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
       dots:false,
       responsive:{
           0:{
-              items:1
+              items:2
           },
           600:{
               items:3
           },
           1000:{
               items:5
+          },
+          1790:{
+              items:4
           }
       }
   })

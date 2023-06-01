@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body{
-  position: relative;
-}
-
-
 .relative{
   position: relative;
 }
@@ -33,6 +28,46 @@ a:hover{
 
 
 /* Nav Bar */
+
+.alert{
+  position: absolute; 
+  bottom: 2000;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.fixed{
+  position: fixed; 
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav-media-fs{
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+.navbar-brand {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+.navbar-nav{
+  align-items: center;
+} 
+
+.navbar-dark .navbar-nav .nav-link {
+  color: red;
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+  color: blue;
+}
 
 .img-wrapper-profile-pic{
     height: 50px;
@@ -75,6 +110,14 @@ a:hover{
     width: 100%;
     border-radius: 50%;
     object-fit: contain;
+  }
+
+  .min-hide{
+    display: block;
+  }
+  
+  .min-display{
+    display: none;
   }
   
   /* sign-up */
@@ -151,6 +194,10 @@ a:hover{
 
 /* Sbook Section ------------------------------------------*/
 
+.sbook{
+  margin-top: 10rem;
+}
+
   .live-star{
     color: grey;
   }
@@ -167,17 +214,13 @@ a:hover{
     color: yellow;
   }
 
-.relative{
-    position: relative;
-}
-
 .hide{
     display: none;
 }
 
-.fixed{
+.sticky{
     position: sticky;
-    top: 40px;
+    top: 100px;
 }
 
 .card-img-top{
@@ -302,5 +345,132 @@ a:hover{
 .raa{
     position: absolute;
     top: -10px;
+}
+
+/* footer */
+
+footer .img-wrapper{
+  width: 100%;
+  height: 60vh;
+  background-image: url("img/footer-img.jpg");
+  background-size: cover;
+}
+
+footer .overlayy{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+footer .footer-content{
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer .footer-content .social-links i:hover{
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+footer *{
+  font-size: 3rem;
+ }
+
+.footer-st{
+  font-size: 1rem;
+ }
+
+ /* query-media */
+
+@media only screen and (max-width: 1024px){
+
+  .min-hide{
+    display: block;
+  }
+
+.sbook{
+  overflow: hidden;
+}
+
+.sign-in-alert-container {
+  left: 0;
+  width: 100%;
+}  
+
+footer *{
+  font-size: 3rem;
+ }
+
+.footer-st{
+  font-size: 1rem;
+ }
+
+}
+
+@media only screen and (max-width: 768px){
+  .min-hide{
+    display: none;
+  }
+  
+  .min-display{
+    display: block;
+  }
+
+  .flex-it{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .help1{
+    position: absolute;
+    bottom: 430px;
+    left: 500px;
+    font-size: 2rem;
+}
+
+.help2{
+    position: absolute;
+    bottom: 430px;
+    left: 600px;
+    font-size: 2rem;
+}
+
+.help4{
+  position: absolute;
+  bottom: 430px;
+  left: 500px;
+  font-size: 2rem;
+}
+
+.help3{
+  position: absolute;
+  bottom: 430px;
+  left: 600px;
+  font-size: 2rem;
+}
+
+.raa{
+  position: absolute;
+  top: -10px;
+}
+
+footer *{
+  font-size: 2.5rem;
+ }
+
+.footer-st{
+  font-size: 0.8rem;
+ }
 }
 

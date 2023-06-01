@@ -28,6 +28,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootsrap 5 CSS-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootsrap 5 icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Index CSS-->
 <link rel="stylesheet" href="all-books.css?v=<?php echo time(); ?>">   
 </head>   
@@ -36,7 +38,7 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
 
 <?php include 'partials/header.php'; ?>
 
-<div class="container push-down cards-container-wrapper">
+<div class="container push-down cards-container-wrapper media-t">
         <div class="my-5 me-4">
            <input type="text" class="form-control search-bar" placeholder="SEARCH BY TITLE OR AUTHOR">
         </div>
@@ -44,8 +46,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
         <div class="cards-container-hider hide">
         <div class="cards-container">   
         <?php foreach($all_books as $row){ ?>
-           <div class="card border-0 transition mb-5" style="width: 18rem;">
-           <a>
+           <div class="card border-0 transition mb-5 width-card">
+           <a href="sbook.php?title=<?php echo $row['title'];?>">
                <img src="<?PHP echo $row['img'] ?>" class="card-img-top">
                <div class="card-body p-0">
                   <h3 class="title mt-2"><?PHP echo $row['title'] ?></h3>
@@ -65,8 +67,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
              <div class="row-genre-hider hide">
              <div class="row-genre">   
              <?php foreach($pageOne as $row){ ?>
-                <div class="card border-0 transition mb-5" style="width: 18rem;">
-                <a>
+                <div class="card border-0 transition mb-5 width-card">
+                <a href="sbook.php?title=<?php echo $row['title'];?>">
                     <img src="<?PHP echo $row['img'] ?>" class="card-img-top">
                     <div class="card-body p-0">
                        <h3 class="title mt-2"><?PHP echo $row['title'] ?></h3>
@@ -85,8 +87,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
         <div class="row-genre-hider">
         <div class="row-genre">   
         <?php foreach($pageOne as $row){ ?>
-           <div class="card border-0 transition mb-5" style="width: 18rem;">
-           <a>
+           <div class="card border-0 transition mb-5 width-card">
+           <a href="sbook.php?title=<?php echo $row['title'];?>">
                <img src="<?PHP echo $row['img'] ?>" class="card-img-top">
                <div class="card-body p-0">
                   <h3 class="title mt-2"><?PHP echo $row['title'] ?></h3>
@@ -105,8 +107,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
         
         <?php if($headerSearchInput){
         echo '<div class="headers-search-input">
-        <div class="card border-0 transition mb-5" style="width: 18rem;">
-           <a>
+        <div class="card border-0 transition mb-5 width-card">
+           <a href="sbook.php?title='.$headerSearchInputRow["title"].'">
                <img src="'.$headerSearchInputRow["img"].'" class="card-img-top">
                <div class="card-body p-0">
                   <h3 class="title mt-2">'.$headerSearchInputRow["title"].'</h3>
@@ -136,6 +138,8 @@ $headerSearchInputRow = mysqli_fetch_assoc($result);
 </nav>
 </div>      
     <?php } ?>
+
+    <?php include 'partials/footer.php'; ?>
 
 
 

@@ -14,7 +14,7 @@ $page = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <?php foreach($page as $row){ ?>
-           <div class="card border-0 transition mb-5" style="width: 18rem;">
+           <div class="card border-0 transition mb-5 width-card">
            <a>
                <img src="<?PHP echo $row['img'] ?>" class="card-img-top">
                <div class="card-body p-0">

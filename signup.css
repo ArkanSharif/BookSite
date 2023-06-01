@@ -1,0 +1,264 @@
+/* globals and utilities */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+  position: relative;
+}
+
+
+.relative{
+  position: relative;
+}
+
+.hide{
+  display: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+.media-t{
+    padding-top: 5rem;
+  }
+
+/* navbar */
+
+.fixed{
+    position: fixed; 
+    top: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .nav-media-fs{
+    font-size: 2rem;
+    margin-top: 15px;
+  }
+  
+  .navbar-brand {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+  
+  .navbar-nav{
+    align-items: center;
+  } 
+  
+  .navbar-dark .navbar-nav .nav-link {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:hover{
+    color: blue;
+  }
+  
+  .img-wrapper-profile-pic{
+    height: 50px;
+      width: 50px;
+  }
+  
+  .offcanvas-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .author-dets-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .img-wrapper-profile-pic img{
+    height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+  }
+  
+  .img-wrapper-profile-pic-toggle-on{
+    height: 100px;
+      width: 100px;
+  }
+  
+  .img-wrapper-profile-pic-toggle-on img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+  
+  .min-hide{
+    display: block;
+  }
+  
+  .min-display{
+    display: none;
+  }
+  
+  /* sign-up */
+  
+  .overlay{
+    position: fixed; 
+      width: 100%; 
+      height: 100%; 
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5); 
+      z-index: 200; 
+  }
+  
+  .sign-up-form{
+    display: flex;
+    position: absolute;
+    background-color: white;
+      left: 300;
+      right: 0;
+      top: 60;
+      bottom: 0;
+      width: 1000px;
+      height: 500px;
+  }
+  
+  .sign-up-form .img-wrapper{
+    width: 500px;
+    height: 100%;
+    background-color: aqua;
+  }
+  
+  .sign-up-form .img-wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .form-content{
+    height: 100%;
+    width: 100%;
+  }
+  
+    /* sign-in-alert */
+  
+    .sign-in-alert-overlay{
+      position: fixed; 
+        width: 100%; 
+        height: 100%; 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5); 
+        z-index: 200; 
+    }
+  
+    .sign-in-alert-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    position: absolute;
+    background-color: white;
+      left: 300;
+      right: 0;
+      top: 160;
+      bottom: 0;
+      width: 1000px;
+      height: 250px;
+    }
+
+    /* footer */
+
+footer .img-wrapper{
+    width: 100%;
+    height: 60vh;
+    background-image: url("img/footer-img.jpg");
+    background-size: cover;
+  }
+  
+  footer .overlayy{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  footer .footer-content{
+    position: absolute;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  footer .footer-content .social-links i:hover{
+    color: #0d6efd;
+    cursor: pointer;
+  }
+  
+  footer *{
+    font-size: 3rem;
+   }
+  
+  .footer-st{
+    font-size: 1rem;
+   }
+
+    /* media query */
+
+    @media only screen and (max-width: 1024px){
+        .sign-in-alert-container {
+            left: 0;
+            width: 100%;
+        }  
+
+    }
+
+    @media only screen and (max-width: 768px){
+  
+        .min-hide{
+          display: none;
+        }
+      
+        .min-display{
+          display: block;
+        }
+      
+        .navbar-brand {
+          padding-top: 0rem;
+          padding-bottom: 0rem;
+      }
+        .nav-media-fs{
+          font-size: 2rem;
+          margin-top: 18px;
+        }
+
+        footer *{
+          font-size: 2.5rem;
+         }
+        
+        .footer-st{
+          font-size: 0.8rem;
+         }
+        
+        }

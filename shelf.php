@@ -49,6 +49,8 @@ $maxRows = mysqli_num_rows($result);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootsrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootsrap 5 icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Index CSS -->
 <link rel="stylesheet" href="shelf.css?v=<?php echo time(); ?>">
 <!-- Font awesome -->
@@ -58,7 +60,7 @@ $maxRows = mysqli_num_rows($result);
 
 <?php include 'partials/header.php'; ?>
 
-<div class="container row-shelf-wrapper">
+<div class="container row-shelf-wrapper media-t">
     <?php if($rowcount > 0){
     echo '<h1 class="text-center my-3 display-1">YOUR SHELF</h1>';
     } else{
@@ -107,6 +109,7 @@ $maxRows = mysqli_num_rows($result);
 <div class="vent"></div>
     </div>
 </div>
+<?php include 'partials/footer.php'; ?>
 
 <!-- Bootsrap 5 JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

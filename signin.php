@@ -9,7 +9,11 @@ if(isset($_POST['signinsubmit'])){
     $username = $_POST['signinusername'];
     $email = $_POST['signinemail'];
     $password = $_POST['signinpassword'];
-
+    
+    if($username === ''){
+        $errors['username'] = 'Field is empty';
+        $values['username'] = $username;
+    } else{
     $sql = "SELECT username FROM userHistory WHERE username='$username'";
     $result = mysqli_query($con, $sql);
     if(!$result){
@@ -21,7 +25,12 @@ if(isset($_POST['signinsubmit'])){
             $values['username'] = $username;
         }
     }
-
+}
+    
+if($email === ''){
+    $errors['email'] = 'Field is empty';
+    $values['email'] = $email;
+} else{
     $sql = "SELECT email FROM userHistory WHERE email='$email'";
     $result = mysqli_query($con, $sql);
     if(!$result){
@@ -33,7 +42,12 @@ if(isset($_POST['signinsubmit'])){
             $values['email'] = $email;
         }
     }
-
+}
+    
+if($password === ''){
+    $errors['password'] = 'Field is empty';
+    $values['password'] = $password;
+} else{
     $sql = "SELECT password FROM userHistory WHERE password ='$password'";
     $result = mysqli_query($con, $sql);
     if(!$result){
@@ -45,6 +59,7 @@ if(isset($_POST['signinsubmit'])){
             $values['password'] = $password;
         }
     }
+}
 
     $sql = "SELECT username, email, password, profilePic FROM userHistory WHERE username='$username' && email='$email' && password ='$password'";
     $result = mysqli_query($con, $sql);
@@ -71,15 +86,18 @@ if(isset($_POST['signinsubmit'])){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootsrap 5 CSS-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Bootsrap 5 icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <!-- Index CSS-->
-<link rel="stylesheet" href="home.css?v=<?php echo time(); ?>">
+<link rel="stylesheet" href="signin.css?v=<?php echo time(); ?>">
 </header>
 <body>
 
 <?php include 'partials/header.php'; ?>
 
-<div class="container">
-    <h1 class="text-center mt-5">SIGN IN FORM</h1>
+
+<div class="container media-t">
+    <h1 class="text-center">SIGN IN FORM</h1>
     <div class="mb-3">
         <form method="POST">
   <input type="text" class="form-control" placeholder="Username" name="signinusername" value="<?php echo $values['username']; ?>">
@@ -96,6 +114,9 @@ if(isset($_POST['signinsubmit'])){
 <button type="submit" class="btn btn-primary mt-3 form-control" name="signinsubmit"><span class="d-flex justify-content-start p-0">Submit</span></button>
 </form>
 </div>
+<?php include 'partials/footer.php'; ?>
 
+<!-- Bootsrap 5 JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -6,24 +6,6 @@ include 'partials/connect.php';
 $alert = $_GET['alert'];
 $headerSearchValue = '';
 
-// Sign Up
-
-if(isset($_POST['signupSubmit'])){
-  $username = $_POST['signupUsername'];
-  $email = $_POST['signupEmail'];
-  $password = $_POST['signupPassword'];
-  $profilepic_uploaded_file = $_FILES['signupProfilePic']['tmp_name'];
-  $profilepic_destination_path = 'img/' . $_FILES['signupProfilePic']['name'];
-  if(move_uploaded_file($profilepic_uploaded_file, $profilepic_destination_path)){
-    echo 'file uploaded successfully';
-    $sql = "INSERT INTO userhistory (username, email, password, profilePic, hasUserDetails) VALUES ('$username', '$email', '$password', '$profilepic_destination_path', 'true')";
-    $result = mysqli_query($con, $sql);
-    if($result){
-      header('location:signin.php');
-    }
-  }
-}
-
 // Update account
 
 if(isset($_POST['updatesubmitusername'])){
@@ -120,38 +102,51 @@ if(isset($_POST['navSearchBarSubmit'])){
 
           <!-- Nav Bar -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark relative">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark relative fixed">
         <div class="container-fluid">
-          <a class="navbar-brand fs-3 ms-2" href="home.php">bestbooks.com</a>
+          <a class="navbar-brand ms-2" href="home.php"><p class="nav-media-fs"><span class="fw-bold text-danger">Best</span><span class="text-primary">Books</span><span class="text-light">.com</span></p></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></sp  an>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav me-2">
+            <li class="nav-item">
+            <?php if(!$username){
+              echo '<a href="signup.php"><button class="btn btn-danger p-2 signupin nav-fs min-display" type="submit">Sign up/in</button></a>';
+            }
+            ?>
+              </li>
+              <?php if($username){?>
+            <div class="img-wrapper-profile-pic">
+            <a class="p-0 bg-dark border border-dark min-display" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <img src="<?php echo $userProfile['profilePic'] ?>" alt="">
+            </a> 
+              </div>
+            <?php } ?>
               <li class="nav-item">
                 <a class="nav-link" href="home.php">HOME</a>
               </li>
                 <?php if($username){
                 echo '<li class="nav-item"><a class="nav-link" href="shelf.php">SHELF</a></li>';
                 }else{
-                  echo '<li class="nav-item help"><a class="nav-link"">SHELF</a></li>';   
+                  echo '<li class="nav-item help"><a class="nav-link">SHELF</a></li>';   
                 }
                 ?>
               <li class="nav-item">
-                <a class="nav-link" href="all-books.php">ALL BOOKS</a>
+                <a class="nav-link me-2" href="all-books.php">ALL BOOKS</a>
               </li>
 
               <!-- nav search bar -->
 
               <form class="d-flex" method="POST">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchBarInput" value=<?php echo $headerSearchValue; ?>>
-                <button class="btn btn-secondary" type="submit" name="navSearchBarSubmit">Search</button>
+                <input class="form-control me-2 nav-fs" type="search" placeholder="Search" aria-label="Search" name="searchBarInput" value=<?php echo $headerSearchValue; ?>>
+                <button class="btn btn-primary nav-fs" type="submit" name="navSearchBarSubmit">Search</button>
               </form>
 
               <!-- echo submit button if no user details exist -->
               <?php if(!$username){
               echo '<li class="nav-item ms-3">
-                <button class="btn btn-danger p-2 signupin" type="submit">SIGN UP/IN</button>
+                <a href="signup.php"><button class="btn btn-danger p-2 signupin min-hide nav-fs" type="submit">Sign up/in</button></a>
               </li>';
               }?>
               <!-- end -->
@@ -159,10 +154,10 @@ if(isset($_POST['navSearchBarSubmit'])){
             <!-- echo profile pic if user details exist -->
             <?php if($username){?>
             <div class="img-wrapper-profile-pic">
-            <a class="p-0 bg-dark border border-dark" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <a class="p-0 bg-dark border border-dark min-hide" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             <img src="<?php echo $userProfile['profilePic'] ?>" alt="">
             </a> 
-              </div>';
+              </div>
             <?php } ?>
             <!-- end -->
           </div>
@@ -312,7 +307,7 @@ if(isset($_POST['navSearchBarSubmit'])){
   </div>
 
 <div class="border-top">
-  <p class="mt-2 ms-4"><a href="signout.php">Sign out<a></p>
+  <p class="mt-2 ms-4"><a href="signout.php" class="text-dark">Sign out<a></p>
             </div>
 
   </div>
@@ -321,45 +316,7 @@ if(isset($_POST['navSearchBarSubmit'])){
 </div>
 
 <!-- End of code -->
-
-      <!-- SIGN UP FORM -->
-
-      <div class="overlay hide">
-        <form action="" method="POST" enctype="multipart/form-data">
-      <div class="sign-up-form">
-        <div class="img-wrapper">
-          <img src="img/footer-img.jpg" alt="">
-        </div>
-        <div class="form-content">
-          <h1 class="text-center text-dark">Sign Up Form</h1>
-          <div class="form container">
-          <form>
-          <div class="mb-4 mt-4">
-    <input type="text" class="form-control" placeholder="Username" name="signupUsername">
-  </div>
-  <div class="mb-4">
-    <input type="email" class="form-control" placeholder="Email" name="signupEmail">
-  </div>
-  <div class="mb-4">
-    <input type="text" class="form-control" placeholder="Password" name="signupPassword">
-  </div>
-  <div class="mb-4">
-  <label for="formFile" class="form-label">Choose an image for profile pic</label>
-  <input class="form-control" type="file" id="formFile" name="signupProfilePic">
-</div>
-  <button type="submit" class="btn btn-primary" name="signupSubmit">Submit</button>
-  <h4 class="text-center">OR</h4>
-  <div class="mb-4">
-  <div class="text-center"><a class="text-dark" href="signin.php">If you have an account click here to sign in</a></div>
-</div>
-</form>
-          </div>
-        </div>
-
-      </div>
-</form>
-      </div>
-
+      
       <!-- sign-in-alert -->
       <div class="sign-in-alert-overlay hide">
         <div class="sign-in-alert-container">
