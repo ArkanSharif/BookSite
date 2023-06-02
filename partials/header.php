@@ -94,7 +94,7 @@ if(isset($_POST['navSearchBarSubmit'])){
 
   /* get Purchases */
  
-  $sql = "SELECT * FROM userhistory WHERE ordered = 'true'";
+  $sql = "SELECT * FROM userhistory WHERE username = '$username' && ordered = 'true'";
   $result = mysqli_query($con, $sql);
   $purchases = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -106,7 +106,7 @@ if(isset($_POST['navSearchBarSubmit'])){
         <div class="container-fluid">
           <a class="navbar-brand ms-2" href="home.php"><p class="nav-media-fs"><span class="fw-bold text-danger">Best</span><span class="text-primary">Books</span><span class="text-light">.com</span></p></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></sp  an>
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav me-2">
@@ -297,9 +297,13 @@ if(isset($_POST['navSearchBarSubmit'])){
       <div class="accordion-body">
         <div>
           <?php 
+          if($purchases){
           foreach($purchases as $value){
             echo '<p>Purchased '.$value['quantity'].' '.$value['bookPurchased'].' on '.$value['date'].'</p>';
           }
+        } else{
+          echo 'No purchases made';
+        }
           ?>
         </div>
       </div>

@@ -105,7 +105,16 @@ $maxRows = mysqli_num_rows($result);
                    <!-- END OF CODE -->
 
 </div>
-<button type="button" class="btn btn-primary view-more mt-5">View more</button>
+<?php if($rowcount > 0){
+    if($rowcount > 4){
+echo '<button type="button" class="btn btn-primary view-more mt-5">View more</button>';
+    } else{
+        echo '';
+    }
+} else{
+    echo '';
+}
+?>
 <div class="vent"></div>
     </div>
 </div>

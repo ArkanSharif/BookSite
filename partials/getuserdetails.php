@@ -9,7 +9,7 @@ $sql = "SELECT * FROM `userhistory` WHERE username = '$username' AND hasUserDeta
 $result = mysqli_query($con, $sql);
 $userProfile = mysqli_fetch_assoc($result);
 
-$help = $userProfile['hasUserDetails']
+$hasUserDetails = $userProfile['hasUserDetails'];
 
 
 ?>

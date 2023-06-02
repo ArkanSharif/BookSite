@@ -73,6 +73,8 @@ if(isset($_POST['signupSubmit'])){
     if($result){
       header('location:signin.php');
     }
+  } else{
+    $username = '';
   }
   }
   echo $username;

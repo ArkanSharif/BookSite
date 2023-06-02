@@ -274,6 +274,14 @@ a:hover{
     margin-top: 30px;
 }
 
+.card-width-1{
+  width: 13rem;
+}
+
+.card-width-2{
+  width: 15rem;
+}
+
 .carousel-img-wrapper{
     height: 300px;
     width: 300px;
@@ -287,14 +295,14 @@ a:hover{
 
 .help1{
     position: absolute;
-    bottom: 430px;
+    bottom: 478px;
     left: 700px;
     font-size: 2rem;
 }
 
 .help2{
     position: absolute;
-    bottom: 430px;
+    bottom: 478px;
     left: 750px;
     font-size: 2rem;
 }
@@ -330,14 +338,14 @@ a:hover{
 
 .help4{
     position: absolute;
-    bottom: 430px;
+    bottom: 530px;
     left: 1100px;
     font-size: 2rem;
 }
 
 .help3{
     position: absolute;
-    bottom: 430px;
+    bottom: 530px;
     left: 1150px;
     font-size: 2rem;
 }
@@ -388,6 +396,10 @@ footer *{
   font-size: 1rem;
  }
 
+ .carousel{
+  height: 33rem;
+ }
+
  /* query-media */
 
 @media only screen and (max-width: 1024px){
@@ -412,10 +424,14 @@ footer *{
 .footer-st{
   font-size: 1rem;
  }
-
 }
 
 @media only screen and (max-width: 768px){
+
+  .sbook{
+    margin-top: 5rem;
+  }
+
   .min-hide{
     display: none;
   }
@@ -434,31 +450,43 @@ footer *{
 
   .help1{
     position: absolute;
-    bottom: 430px;
-    left: 500px;
+    bottom: 405px;
+    left: 580px;
     font-size: 2rem;
 }
 
 .help2{
     position: absolute;
-    bottom: 430px;
-    left: 600px;
+    bottom: 405px;
+    left: 620px;
     font-size: 2rem;
+}
+
+.card-width-1{
+  width: 8rem;
 }
 
 .help4{
   position: absolute;
-  bottom: 430px;
-  left: 500px;
+  bottom: 520px;
+  left: 600px;
   font-size: 2rem;
 }
 
 .help3{
   position: absolute;
-  bottom: 430px;
-  left: 600px;
+  bottom: 520px;
+  left: 650px;
   font-size: 2rem;
 }
+
+.card-width-2{
+  width: 10rem;
+}
+
+.carousel{
+  height: 27rem;
+ }
 
 .raa{
   position: absolute;
@@ -472,5 +500,69 @@ footer *{
 .footer-st{
   font-size: 0.8rem;
  }
+}
+
+@media only screen and (max-width: 376px){
+  .help1{
+    position: absolute;
+    bottom: 260px;
+    left: 290px;
+    font-size: 2rem;
+}
+
+.help2{
+    position: absolute;
+    bottom: 260px;
+    left: 310px;
+    font-size: 2rem;
+}
+
+.card-width-1{
+  width: 5rem;
+}
+
+.help4{
+  position: absolute;
+  bottom: 430px;
+  left: 270px;
+  font-size: 2rem;
+}
+
+.help3{
+  position: absolute;
+  bottom: 430px;
+  left: 300px;
+  font-size: 2rem;
+}
+
+.card-width-2{
+  width: 4.5rem;
+}
+
+.h5{
+  font-size: 12px;
+}
+
+.h6{
+  font-size: 10px;
+}
+
+.carousel{
+  height: 18rem;
+  width: 500px;
+ }
+
+ .raa{
+  font-size: 18px;
+ }
+
+ .rating{
+  font-size: 10px;
+ } 
+
+.margin-end{
+  margin-right: 40px;
+}
+
 }
 

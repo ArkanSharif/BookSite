@@ -11,6 +11,14 @@ $sql = "SELECT * FROM `all-books` WHERE title = '$title'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
 
+$sql = "SELECT * FROM `all-books` WHERE category = 'new_arr' LIMIT 4";
+$result = mysqli_query($con, $sql);
+$new_arrivals = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+$sql = "SELECT * FROM `all-books` WHERE category = 'best_seller' LIMIT 4";
+$result = mysqli_query($con, $sql);
+$best_sellers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
 
 
@@ -172,119 +180,65 @@ $row = mysqli_fetch_assoc($result);
                     </div>
                     <div class="line mt-4"></div>
                     <div class="readers-also-enjoyed">
-                        <div id="carouselExampleControls" class="carousel slide carousel-dark realtive" data-bs-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel full slide carousel-dark relative" data-bs-ride="carousel">
                             <h4 class="rae">Readers also enjoyed</h4>
                             <div class="carousel-inner pt-5">
                               <div class="carousel-item active">
                                 <div class="row">
-                                    <div class="col-3">
-                                <div class="card border-0" style="width: 12rem;">
-                                    <img src="img/new-arr-10.jpg" alt="...">
-                                    <div class="card-body p-0">
-                                        <h5 class="title mt-2">Just Like You</h5>
-                                        <h6 class="author">Nick Hornby</h6>
-                                      <div class="rating">
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <span>4.47</span>
-                                      </div>
-                                    </div>
+                                <?php
+                  foreach($new_arrivals as $row){?>
+                  
+                  <div class="col-3"> 
+                  <a href="sbook.php?title=<?php echo $row['title']; ?>" class="text-dark">
+                    <div class="card border-0 card-width-1">
+                    
+                        <img src="<?php echo $row['img'] ?>">
+                 
+                  <div class="card-body p-0 text-start">
+                            <h5 class="title mt-2 h5"><?php echo $row['title'] ?></h5>
+                            <h6 class="author h6"><?php echo $row['author'] ?></h6>
+                          <div class="rating">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <span>4.47</span>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                      </div>
+                      
+<?php }
+?>
+                              
                                   </div>
                                   </div>
-                                  <div class="col-3">
-                                    <div class="card border-0" style="width: 12rem;">
-                                        <img src="img/new-arr-10.jpg" alt="...">
-                                        <div class="card-body p-0">
-                                          <h5 class="title mt-2">Just Like You</h5>
-                                          <h6 class="author">Nick Hornby</h6>
-                                          <div class="rating">
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                            <span>4.47</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      </div>
-                                      <div class="col-3">
-                                        <div class="card border-0" style="width: 12rem;">
-                                            <img src="img/new-arr-10.jpg" alt="...">
-                                            <div class="card-body p-0">
-                                              <h5 class="title mt-2">Just Like You</h5>
-                                              <h6 class="author">Nick Hornby</h6>
-                                              <div class="rating">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <span>4.47</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          </div>
-                                          <div class="col-3">
-                                            <div class="card border-0" style="width: 12rem;">
-                                                <img src="img/new-arr-10.jpg" alt="...">
-                                                <div class="card-body p-0">
-                                                  <h5 class="title mt-2">Just Like You</h5>
-                                                  <h6 class="author">Nick Hornby</h6>
-                                                  <div class="rating">
-                                                    <i class="fa-solid fa-star text-warning"></i>
-                                                    <span>4.47</span>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              </div>
-                                  </div>
-                                  </div>
+
                               <div class="carousel-item">
                                 <div class="row">
-                                    <div class="col-3">
-                                <div class="card border-0" style="width: 12rem;">
-                                    <img src="img/new-arr-12.jpg" alt="...">
-                                    <div class="card-body p-0">
-                                      <h5 class="title mt-2">Another Day</h5>
-                                      <h6 class="author">David Levithan</h6>
-                                      <div class="rating">
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <span>4.47</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-3">
-                                    <div class="card border-0" style="width: 12rem;">
-                                        <img src="img/new-arr-12.jpg" alt="...">
-                                        <div class="card-body p-0">
-                                          <h5 class="title mt-2">Another Day</h5>
-                                          <h6 class="author">David Levithan</h6>
-                                          <div class="rating">
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                            <span>4.47</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      </div>
-                                      <div class="col-3">
-                                        <div class="card border-0" style="width: 12rem;">
-                                            <img src="img/new-arr-12.jpg" alt="...">
-                                            <div class="card-body p-0">
-                                              <h5 class="title mt-2">Another Day</h5>
-                                              <h6 class="author">David Levithan</h6>
-                                              <div class="rating">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <span>4.47</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          </div>
-                                          <div class="col-3">
-                                            <div class="card border-0" style="width: 12rem;">
-                                                <img src="img/new-arr-12.jpg" alt="...">
-                                                <div class="card-body p-0">
-                                                  <h5 class="title mt-2">Another Day</h5>
-                                                  <h6 class="author">David Levithan</h6>
-                                                  <div class="rating">
-                                                    <i class="fa-solid fa-star text-warning"></i>
-                                                    <span>4.47</span>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                              </div>
+                                <?php
+                  foreach($best_sellers as $row){?>
+                  
+                  <div class="col-3"> 
+                  <a href="sbook.php?title=<?php echo $row['title']; ?>" class="text-dark">
+                    <div class="card border-0 card-width-1">
+                    
+                        <img src="<?php echo $row['img'] ?>">
+                 
+                  <div class="card-body p-0 text-start">
+                            <h5 class="title mt-2 h5"><?php echo $row['title'] ?></h5>
+                            <h6 class="author h6"><?php echo $row['author'] ?></h6>
+                          <div class="rating">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <span>4.47</span>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                      </div>
+                      
+<?php }
+?>
+
+              
                                   </div>
                               </div>
                              
@@ -315,11 +269,10 @@ $row = mysqli_fetch_assoc($result);
 
                         <!-----------REVIEW POSTING CODE------------->
                         <?php
-                        $sql = "SELECT * FROM userhistory WHERE username = '$username' && reviewedBook = '$title'";
+                        $sql = "SELECT * FROM userhistory WHERE reviewedBook = '$title' ORDER BY date DESC";
                         $result = mysqli_query($con, $sql); 
-                          $num = mysqli_num_rows($result);
-                          if($num > 0){
-                            $row = mysqli_fetch_assoc($result);
+                        $reviews = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+                          foreach($reviews as $row){
                             echo '<div class="review-container relative row">
                           <div class="review-author col-3">
                               <div class="rev-img-wrapper">
@@ -335,9 +288,9 @@ $row = mysqli_fetch_assoc($result);
                                   <div>';
                                   for($i = 0; $i < 5; $i++){
                                     if($i < $row['revRating']){
-                                        echo "<i class='fa-solid fa-star rev-star text-warning me-2'></i>";
+                                        echo "<i class='fa-solid fa-star rev-star text-warning me-1'></i>";
                                     } else{
-                                        echo "<i class='fa-solid fa-star rev-star text-secondary me-2'></i>";
+                                        echo "<i class='fa-solid fa-star rev-star text-secondary me-1'></i>";
                                     }
                                 };
                                   echo '</div>
@@ -461,145 +414,61 @@ $row = mysqli_fetch_assoc($result);
             </div>
         </div>
         <div class="line mt-5"></div>
-        <div id="carouselExampleIndicators" class="carousel slide carousel-dark pushtop relative" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-dark pushtop relative margin-end" data-bs-ride="carousel">
             <h4 class="raa">Other books by Desmond Shum</h4>
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="row justify-content-center">
-                    <div class="col-2">
-                        <div class="card border-0" style="width: 12rem;">
-                            <img src="img/new-arr-10.jpg" alt="...">
-                            <div class="card-body p-0">
-                              <h5 class="title mt-2">Just Like You</h5>
-                              <h6 class="author">Nick Hornby</h6>
-                              <div class="rating">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <span>4.47</span>
-                              </div>
-                            </div>
+                <?php
+                  foreach($new_arrivals as $row){?>
+                  
+                  <div class="col-3"> 
+                  <a href="sbook.php?title=<?php echo $row['title']; ?>" class="text-dark">
+                    <div class="card border-0 card-width-2">
+                    
+                        <img src="<?php echo $row['img'] ?>">
+                 
+                  <div class="card-body p-0 text-start">
+                            <h5 class="title mt-2 h5"><?php echo $row['title'] ?></h5>
+                            <h6 class="author h6"><?php echo $row['author'] ?></h6>
+                          <div class="rating">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <span>4.47</span>
                           </div>
-                          </div>
-                          <div class="col-2">
-                            <div class="card border-0" style="width: 12rem;">
-                                <img src="img/new-arr-10.jpg" alt="...">
-                                <div class="card-body p-0">
-                                    <h5 class="title mt-2">Just Like You</h5>
-                                    <h6 class="author">Nick Hornby</h6>
-                                  <div class="rating">
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <span>4.47</span>
-                                  </div>
-                                </div>
-                              </div>
-                              </div>
-                              <div class="col-2">
-                                <div class="card border-0" style="width: 12rem;">
-                                    <img src="img/new-arr-10.jpg" alt="...">
-                                    <div class="card-body p-0">
-                                        <h5 class="title mt-2">Just Like You</h5>
-                                        <h6 class="author">Nick Hornby</h6>
-                                      <div class="rating">
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <span>4.47</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-2">
-                                    <div class="card border-0" style="width: 12rem;">
-                                        <img src="img/new-arr-10.jpg" alt="...">
-                                        <div class="card-body p-0">
-                                            <h5 class="title mt-2">Just Like You</h5>
-                                            <h6 class="author">Nick Hornby</h6>
-                                          <div class="rating">
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                            <span>4.47</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      </div>
-                                      <div class="col-2">
-                                        <div class="card border-0" style="width: 12rem;">
-                                            <img src="img/new-arr-10.jpg" alt="...">
-                                            <div class="card-body p-0">
-                                                <h5 class="title mt-2">Just Like You</h5>
-                                                <h6 class="author">Nick Hornby</h6>
-                                              <div class="rating">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <span>4.47</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          </div>
+                        </div>
+                      </div>
+                      </a>
+                      </div>
+                      
+<?php }
+?>
                   </div>
               </div>
               <div class="carousel-item">
                 <div class="row justify-content-center">
-                    <div class="col-2">
-                        <div class="card border-0" style="width: 12rem;">
-                            <img src="img/new-arr-12.jpg" alt="...">
-                            <div class="card-body p-0">
-                              <h5 class="title mt-2">Another Day</h5>
-                              <h6 class="author">David Levithan</h6>
-                              <div class="rating">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <span>4.47</span>
-                              </div>
-                            </div>
+                <?php
+                  foreach($best_sellers as $row){?>
+                  
+                  <div class="col-3"> 
+                  <a href="sbook.php?title=<?php echo $row['title']; ?>" class="text-dark">
+                    <div class="card border-0 card-width-2">
+                    
+                        <img src="<?php echo $row['img'] ?>">
+                 
+                  <div class="card-body p-0 text-start">
+                            <h5 class="title mt-2 h5"><?php echo $row['title'] ?></h5>
+                            <h6 class="author h6"><?php echo $row['author'] ?></h6>
+                          <div class="rating">
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <span>4.47</span>
                           </div>
-                          </div>
-                          <div class="col-2">
-                            <div class="card border-0" style="width: 12rem;">
-                                <img src="img/new-arr-12.jpg" alt="...">
-                                <div class="card-body p-0">
-                                  <h5 class="title mt-2">Another Day</h5>
-                                  <h6 class="author">David Levithan</h6>
-                                  <div class="rating">
-                                    <i class="fa-solid fa-star text-warning"></i>
-                                    <span>4.47</span>
-                                  </div>
-                                </div>
-                              </div>
-                              </div>
-                              <div class="col-2">
-                                <div class="card border-0" style="width: 12rem;">
-                                    <img src="img/new-arr-12.jpg" alt="...">
-                                    <div class="card-body p-0">
-                                      <h5 class="title mt-2">Another Day</h5>
-                                      <h6 class="author">David Levithan</h6>
-                                      <div class="rating">
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <span>4.47</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  <div class="col-2">
-                                    <div class="card border-0" style="width: 12rem;">
-                                        <img src="img/new-arr-12.jpg" alt="...">
-                                        <div class="card-body p-0">
-                                          <h5 class="title mt-2">Another Day</h5>
-                                          <h6 class="author">David Levithan</h6>
-                                          <div class="rating">
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                            <span>4.47</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      </div>
-                                      <div class="col-2">
-                                        <div class="card border-0" style="width: 12rem;">
-                                            <img src="img/new-arr-12.jpg" alt="...">
-                                            <div class="card-body p-0">
-                                              <h5 class="title mt-2">Another Day</h5>
-                                              <h6 class="author">David Levithan</h6>
-                                              <div class="rating">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <span>4.47</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          </div>
+                        </div>
+                      </div>
+                      </a>
+                      </div>
+                      
+<?php }
+?>
                   </div>
               </div>
             </div>
